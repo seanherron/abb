@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response,redirect
 from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 
@@ -28,5 +28,5 @@ def new_timesheet (request):
 			r.save()
 			t.records.add(r)
 		t.save()
-		return render (request,"success.html", {"timesheet":t})
+		return redirect ("/")
 	return render (request, 'edit.html', {"projects":projects, "weeks":weeks})

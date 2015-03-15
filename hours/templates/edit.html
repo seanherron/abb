@@ -5,7 +5,7 @@
 {% csrf_token %}
 <fieldset><legend>Week</legend>
 <div class="form-group">
-<label>Reporting Period</label> <input name="week" value="{{weeks}}" readonly></div>
+<label>Reporting Period</label> <input name="week" value="{{weeks.id}}" hidden readonly>{{weeks}}</div>
 </fieldset>
 <fieldset><legend>Projects</legend>
 <div id="projects-div">

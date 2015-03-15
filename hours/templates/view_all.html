@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Always Be Billin'</h1>
+{% for timesheet in timesheets %}
+<a href="{{timesheet.get_absolute_url}}">{{timesheet.reporting_period}}</a>
+{% endfor %}
+{% endblock %}

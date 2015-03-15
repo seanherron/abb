@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Always Be Billin'</h1>
+<form id="timesheetForm" method="post">
+{% csrf_token %}
+<fieldset><legend>Week</legend>
+<div class="form-group">
+<label>Reporting Period</label> <input name="week" value="{{weeks}}" readonly></div>
+</fieldset>
+<fieldset><legend>Projects</legend>
+<div id="projects-div">
+<div class="row">
+<div class="col-xs-8">
+<div class="form-group">
+<select class="form-control" id="id_projects" name="project">
+{% for project in projects %}
+<option value="{{project.id}}">{{project.name}} ({% if project.billable %}Billable{%else%}Not Billable{%endif%})</option>
+{% endfor %}
+</select>
+</div>
+</div>
+<div class="col-xs-4">
+<div class="form-group">
+<input name="percentage" class="percentage form-control" type="number" min="0" max="100" step="5" value="0">
+</div>
+</div>
+</div>
+</div>
+</fieldset>
+<div class="form-group">
+<button type="button" class="btn btn-default addProjectbutton"><i class="fa fa-plus"></i> Add Project</button>
+</div>
+<fieldset><legend>Submit</legend>
+<div class="form-group pull-right">
+<button class="btn btn-success" id="submitBtn" type="submit">Submit</button>
+</div>
+</fieldset>
+</form>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+
+projectClone = $("#projects-div").html()
+
+$(document).ready(function() {
+	$(".addProjectbutton").on("click", function (){
+		$("#projects-div").append(projectClone)
+	})
+})
+</script>
+{% endblock %}
